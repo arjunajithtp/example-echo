@@ -1,2 +1,2 @@
 # example-echo
-An example using golang echo framework.
+An example for golang echo framework.
