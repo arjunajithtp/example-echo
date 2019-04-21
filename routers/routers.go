@@ -1,8 +1,8 @@
 package routers
 
 import (
-	"fmt"
-
+	"github.com/arjunajithtp/example-echo/handlers"
+	"github.com/arjunajithtp/example-echo/middlewares"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -16,21 +16,10 @@ func Router() {
 	e.Use(middleware.Recover())
 
 	// Routes
-	e.GET("/users", createUser)
+	g := e.Group("/id")
+	g.Use(middleware.KeyAuth(middlewares.ValidateToken))
+	g.GET("/:id", handlers.GetID)
+	g.POST("/:id", handlers.GetAll)
 
-	e.Logger.Fatal(e.Start(":8000"))
-}
-
-func createUser(c echo.Context) error {
-	// u := &user{
-	// 	ID: seq,
-	// }
-	// if err := c.Bind(u); err != nil {
-	// 	return err
-	// }
-	// users[u.ID] = u
-	// seq++
-	// return c.JSON(http.StatusCreated, u)
-
-	return fmt.Errorf("error ghgjghjghjghjghjhgjghjhgjghjghjhgjhgjhgjgh")
+	e.Logger.Fatal(e.Start(":12345"))
 }
