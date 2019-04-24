@@ -17,9 +17,14 @@ func Router() {
 
 	// Routes
 	g := e.Group("/id")
-	g.Use(middleware.KeyAuth(middlewares.ValidateToken))
+
+	// Authentication
+	// g.Use(middleware.KeyAuth(middlewares.ValidateToken))
+	// g.Use(middleware.BasicAuth(middlewares.BasicAuthValidator))
+	g.Use(middlewares.CustomAuth)
+
 	g.GET("/:id", handlers.GetID)
 	g.POST("/:id", handlers.GetAll)
 
-	e.Logger.Fatal(e.Start(":12345"))
+	e.Logger.Fatal(e.Start(":1234"))
 }
