@@ -19,8 +19,6 @@ func Router() {
 	g := e.Group("/id")
 
 	// Authentication
-	// g.Use(middleware.KeyAuth(middlewares.ValidateToken))
-	// g.Use(middleware.BasicAuth(middlewares.BasicAuthValidator))
 	g.Use(middlewares.CustomAuth)
 
 	g.GET("/:id", handlers.GetID)

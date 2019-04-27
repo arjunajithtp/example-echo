@@ -7,19 +7,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// ValidateToken is the middleware to validate the test token
-func ValidateToken(key string, c echo.Context) (bool, error) {
-	return key == "test-token", nil
-}
-
-// BasicAuthValidator is the middleware to validate the test basic auth
-func BasicAuthValidator(username, password string, c echo.Context) (bool, error) {
-	if username == "test-name" && password == "password" {
-		return true, nil
-	}
-	return false, nil
-}
-
 // CustomAuth middleware is for custom authentication
 func CustomAuth(handler echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
